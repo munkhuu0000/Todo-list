@@ -11,5 +11,5 @@ const listItem = (content) => {
 button.addEventListener("click", () => {
   const value = input.value;
   content += listItem(value);
-  list.innerHTML = value;
+  list.innerHTML = content;
 });

@@ -6,7 +6,6 @@
 
 .container {
   width: 377px;
-  height: 290px;
   display: flex;
   align-items: center;
   justify-self: center;
@@ -91,6 +90,7 @@
   flex-direction: row;
   justify-content: center;
   gap: 6px;
+  padding-bottom: 36px;
 }
 .power p {
   font-size: 12px;
