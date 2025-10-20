@@ -1,0 +1,126 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 377px;
+  height: 290px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 6px;
+  position: relative;
+  top: 140px;
+}
+.header {
+  width: 345px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px 24px 16px;
+}
+.header p {
+  font-size: 20px;
+  font-weight: 600;
+}
+.task {
+  padding-top: 20px;
+  gap: 6px;
+}
+.create-btn {
+  width: 59px;
+  height: 40px;
+  background-color: rgba(60, 130, 246, 1);
+  border-radius: 6px;
+  color: rgba(249, 249, 249, 1);
+  border: 1px;
+}
+#first-input {
+  width: 280px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid rgba(243, 244, 246, 1);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  width: 345px;
+  height: 32px;
+  margin: 20px;
+}
+.all {
+  width: 38px;
+  height: 32px;
+  background-color: rgba(60, 130, 246, 1);
+  border-radius: 6px;
+  border: 1px;
+  color: rgba(249, 249, 249, 1);
+}
+.active {
+  width: 60px;
+}
+.completed {
+  width: 87px;
+}
+.gray {
+  height: 32px;
+  background-color: rgba(243, 244, 246, 1);
+  border-radius: 6px;
+  color: rgba(54, 54, 54, 1);
+  border: 1px;
+}
+
+.list {
+  padding-bottom: 50px;
+}
+.list p {
+  font-size: 14px;
+  color: rgba(107, 114, 128, 1);
+  font-weight: 400;
+}
+.power {
+  width: 345px;
+  height: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 6px;
+}
+.power p {
+  font-size: 12px;
+  color: rgba(107, 114, 128, 1);
+  font-weight: 400;
+}
+
+.list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  gap: 16px;
+}
+.item {
+  padding: 16px;
+  border: 2px solid rgba(60, 130, 246, 1);
+  border-radius: 8px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item button {
+  padding: 8px, 16px;
+  background-color: rgba(254, 242, 242, 1);
+  color: rgba(239, 68, 68, 1);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
