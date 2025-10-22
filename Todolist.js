@@ -1,20 +1,85 @@
 const list = document.querySelector(".list");
 const input = document.querySelector("input");
-const button = document.querySelector(".create-btn");
+const addBtn = document.querySelector(".create-btn");
+// const buttons =document.querySelectorAll(.buttons button) 
 
 let content = [];
 let type = "All";
 let id = 1;
 
-const listItem = (content) => {
-  return `<div class= "item"> <input type="checkbox" class="checkbox" />${content}
-  <button class="delete-btn">Delete</button></div>`;
+const listItem = (item) => {
+  return `
+   <div class= "item"> 
+  <input type="checkbox" class="checkbox" ${item.isDone ? "checked" : ""} />
+  <p>${item}</p>
+  <button class="delete-btn">Delete</button>
+  </div>
+  `;
 };
-button.addEventListener("click", () => {
-  const value = input.value;
-  content += listItem(value);
-  list.innerHTML = content;
+addBtn.addEventListener("click", () => {
+  content.push({
+    id: id,
+    text: input.value,
+    isDone: false,
+  });
+  id++;
+
+  console.log(content);
+
+  render();
+  // const value = input.value;
+  // content += listItem(value);
+  // list.innerHTML = content;
 });
+
+buttons.forEach((btn, i) => {
+  addBtn.addEventListener("click", () => {
+    buttons.forEach((button) => {
+      button.classList.remove("chosen");
+    });
+
+    addBtn.classList.add("chosen");
+    if (i === 0) {
+      type = "All";
+    } else if (i === 1) {
+      type = "Active";
+    } else {
+      type = "Completed";
+    }
+
+    render();
+  });
+});
+
+const render = () => {
+  const elements = content.filter((item) => {
+    if (type === "All") return true;
+    if (type === "Active") return item.isDone === false;
+    return item.isDone === true;
+  });
+  .map((item) => listItem(item))
+  .join("")
+
+  list.innerHTML = elements;
+  addListners();
+};
+
+// const render = () => {
+// //   const elements = content
+// //     .filter((item) => {
+// //       if (type === "All") return true;
+// //       if (type === "Active") return item.isDone === false;
+// //       return item.isDone === true;
+// //     })
+// //     .map((item) => ListItem(item))
+// //     .join("");
+
+// //   list.innerHTML = elements;
+
+// //   addListeners();
+// // };
+
+
 
 // const list = document.querySelector(".list");
 // const input = document.querySelector("input");
