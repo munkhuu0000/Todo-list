@@ -1,7 +1,7 @@
 const list = document.querySelector(".list");
 const input = document.querySelector("input");
 const addBtn = document.querySelector(".create-btn");
-// const buttons =document.querySelectorAll(.buttons button) 
+const buttons = document.querySelectorAll(".buttons button");
 
 let content = [];
 let type = "All";
@@ -10,9 +10,10 @@ let id = 1;
 const listItem = (item) => {
   return `
    <div class= "item"> 
-  <input type="checkbox" class="checkbox" ${item.isDone ? "checked" : ""} />
-  <p>${item}</p>
-  <button class="delete-btn">Delete</button>
+  <input type="checkbox" class="checkbox" 
+  ${item.isDone ? "checked" : ""} />
+  <p>${item.text}</p>
+  <button id="${item.id}" class="delete-btn">Delete</button>
   </div>
   `;
 };
@@ -22,23 +23,24 @@ addBtn.addEventListener("click", () => {
     text: input.value,
     isDone: false,
   });
+
   id++;
+
+  input.value = "";
 
   console.log(content);
 
   render();
-  // const value = input.value;
-  // content += listItem(value);
-  // list.innerHTML = content;
 });
 
 buttons.forEach((btn, i) => {
-  addBtn.addEventListener("click", () => {
+  btn.addEventListener("click", () => {
     buttons.forEach((button) => {
       button.classList.remove("chosen");
     });
 
-    addBtn.classList.add("chosen");
+    btn.classList.add("chosen");
+
     if (i === 0) {
       type = "All";
     } else if (i === 1) {
@@ -52,34 +54,45 @@ buttons.forEach((btn, i) => {
 });
 
 const render = () => {
-  const elements = content.filter((item) => {
-    if (type === "All") return true;
-    if (type === "Active") return item.isDone === false;
-    return item.isDone === true;
-  });
-  .map((item) => listItem(item))
-  .join("")
+  const elements = content
+    .filter((item) => {
+      if (type === "All") return true;
+      if (type === "Active") return item.isDone === false;
+      return item.isDone === true;
+    })
+    .map((item) => listItem(item))
+    .join("");
 
   list.innerHTML = elements;
-  addListners();
+  addListeners();
 };
 
+const addListeners = () => {
+  const deleteBtns = document.querySelectorAll(".delete-btn");
+  deleteBtns.forEach((btn) => {
+    content = content.filter((item) => item.id != btn.id);
+    render();
+  });
+};
+
+const checkboxes = document.querySelector(".checkbox");
+checkboxes.forEach((checkbox, i) => {
+  checkbox.addEventListener("click", () => {});
+});
 // const render = () => {
-// //   const elements = content
-// //     .filter((item) => {
-// //       if (type === "All") return true;
-// //       if (type === "Active") return item.isDone === false;
-// //       return item.isDone === true;
-// //     })
-// //     .map((item) => ListItem(item))
-// //     .join("");
+//   const elements = content
+//     .filter((item) => {
+//       if (type === "All") return true;
+//       if (type === "Active") return item.isDone === false;
+//       return item.isDone === true;
+//     })
+//     .map((item) => ListItem(item))
+//     .join("");
 
-// //   list.innerHTML = elements;
+//   list.innerHTML = elements;
 
-// //   addListeners();
-// // };
-
-
+//   addListeners();
+// };
 
 // const list = document.querySelector(".list");
 // const input = document.querySelector("input");

@@ -27,13 +27,15 @@
   justify-content: center;
   padding-top: 70px;
 }
-.time {
+#timeDisplay {
   width: 50px;
   height: 200px;
   border-radius: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 36px;
+  font-weight: 700;
 }
 p {
   font-size: 36px;
