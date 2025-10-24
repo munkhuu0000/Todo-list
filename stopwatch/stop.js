@@ -3,40 +3,37 @@ const startBtn = document.querySelector("#startBtn");
 const pauseBtn = document.querySelector("#pauseBtn");
 const resetBtn = document.querySelector("#resetBtn");
 
-let startTime = 0;
-let elapsedTime = 0;
-let currentTime = 0;
-let paused = true;
-let intervalId;
-let hrs = 0;
-let mins = 0;
-let secs = 0;
+let seconds = 0;
+let isStarted = false;
+let intervalId = null;
+
+const render = () => {
+  const hours = Math.floor(seconds / 3600);
+  const remainingSeconds = seconds - hours * 3600;
+  const mins = Math.floor(remainingSeconds / 60);
+  const secs = remainingSeconds - mins * 60;
+
+  timeDisplay.textContent = `${hours < 10 ? "0" + hours : hours}:${
+    mins < 10 ? "0" + mins : mins
+  }:${secs < 10 ? "0" + secs : secs}`;
+};
 
 startBtn.addEventListener("click", () => {
-  if (paused) {
-    paused = false;
-  }
+  if (isStarted) return;
+  isStarted = true;
+  intervalId = setInterval(() => {
+    seconds++;
+    render();
+  }, 1000);
 });
-// pauseBtn.addEventListener("click", () => {});
-// resetBtn.addEventListener("click", () => {});
+pauseBtn.addEventListener("click", () => {
+  if (isStarted === false) return;
 
-function updateTime(() {
-  secssetInterval
-  
-  } secs = Math.floor((elapsedTime / 1000) % 60);
-  mins = Math.floor(((elapsedTime / 1000) * 60) % 60);
-  hrs = Math.floor(((elapsedTime / 1000) * 60 * 60) % 60);
+  isStarted = false;
 
-  timeDisplay.textContent = `${hrs}:${mins}:${secs}`;
-}, )
-
-// let count = 0;
-
-// const timer = setInterval(() => {
-//   console.log(count);
-
-//   if (count === 5) {
-//     clearInterval(timer);
-//   }
-//   count++;
-// }, 1000);
+  clearInterval(intervalId);
+});
+resetBtn.addEventListener("click", () => {
+  seconds = 0;
+  render();
+});
